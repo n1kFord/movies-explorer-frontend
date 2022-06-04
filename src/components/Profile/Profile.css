@@ -1,0 +1,134 @@
+.profile {
+  margin: 148px auto 0;
+  padding: 0 0 70px;
+  width: 100%;
+  max-width: 410px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    margin-top: 310px;
+    padding-bottom: 269px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    margin-top: 144px;
+    padding-bottom: 40px;
+    max-width: 260px;
+  }
+}
+
+.profile__title {
+  margin: 0 auto 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  color: black;
+}
+
+.profile__info {
+  margin: 123px 0 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info {
+    margin-top: 96px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__info {
+    margin-top: 80px;
+  }
+}
+
+.profile__item {
+  margin: 17px 0 0;
+  padding: 16px 0 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e8e8e8;
+}
+
+.profile__item:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.profile__item__key {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 141px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  color: black;
+}
+
+.profile__item__value {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: black;
+}
+
+.profile__actions {
+  margin: 220px auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__actions {
+    margin-top: 210px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__actions {
+    margin-top: 379px;
+  }
+}
+
+.profile__button {
+  margin: 0 auto 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: black;
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+
+.profile__button:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__button {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.profile__button_type_leave {
+  margin-top: 16px;
+  font-weight: 500;
+  color: #ee3465;
+}

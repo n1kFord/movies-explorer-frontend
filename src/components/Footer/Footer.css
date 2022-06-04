@@ -1,0 +1,128 @@
+.footer {
+  margin: 0;
+  padding: 0;
+  min-height: 172px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .footer {
+    min-height: 270px;
+  }
+}
+
+.section__wrapper_type_footer {
+  margin-top: 79px;
+}
+
+@media screen and (max-width: 560px) {
+  .section__wrapper_type_footer {
+    margin-top: 79px;
+    width: 93.7%;
+  }
+}
+
+.footer__total {
+  margin: 0;
+  padding: 0 0 20px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  color: #a0a0a0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+@media screen and (max-width: 560px) {
+  .footer__total {
+    padding-bottom: 21px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.footer__container {
+  margin: 20px 0 0;
+  padding: 0 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 560px) {
+  .footer__container {
+    margin-top: 30px;
+    flex-direction: column-reverse;
+  }
+}
+
+.footer__copyright {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: black;
+}
+
+@media screen and (max-width: 560px) {
+  .footer__copyright {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #a0a0a0;
+  }
+}
+
+.footer__social {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 560px) {
+  .footer__social {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.footer__social__link {
+  margin: 0 0 0 20px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: black;
+  text-decoration: none;
+  transition: 0.1s linear;
+}
+
+@media screen and (max-width: 560px) {
+  .footer__social__link {
+    margin: 12px auto 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.footer__social__link:hover {
+  opacity: 0.7;
+}
+
+.footer__social__link:first-child {
+  margin-top: 0;
+  margin-left: 0;
+}
