@@ -17,7 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "npm run build && scp -r ./build/* n1kford@51.250.51.168:movies-explorer-frontend",
+    "deploy": "npm run build && scp -r ./build/* n1kford@51.250.86.54:/home/n1kford/movies-explorer-frontend",
     "prettier": "npx prettier --write .",
     "eject": "react-scripts eject"
   },
