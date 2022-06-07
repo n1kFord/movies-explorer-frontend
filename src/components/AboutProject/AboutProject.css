@@ -46,16 +46,20 @@
 }
 
 .about-project__task {
-  margin: 0;
+  margin: 0 0 0 30px;
   padding: 0;
   width: 50%;
   display: flex;
   flex-direction: column;
 }
 
+.about-project__task:first-child {
+  margin-left: 0;
+}
+
 @media screen and (max-width: 580px) {
   .about-project__task {
-    margin-top: 56px;
+    margin: 56px 0 0;
     width: 100%;
     align-items: center;
   }

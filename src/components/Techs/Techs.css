@@ -33,6 +33,12 @@
   }
 }
 
+@media screen and (max-width: 360px) {
+  .techs {
+    background-color: white;
+  }
+}
+
 .techs__container {
   margin: 90px auto 0;
   padding: 0;
