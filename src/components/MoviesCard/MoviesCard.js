@@ -1,13 +1,38 @@
 import React from 'react';
 import './MoviesCard.css';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { getDeclOfNum } from '../../utils/numberDeclension';
 
-function MoviesCard({ name, duration, imageSrc, forSaved }) {
-  const [isSaved, setIsSaved] = React.useState(false);
+function MoviesCard({
+  name,
+  nameRU,
+  nameEN,
+  country,
+  director,
+  year,
+  description,
+  trailerLink,
+  thumbnail,
+  movieId,
+  duration,
+  image,
+  id,
+  forSaved,
+  onSave,
+  onDelete,
+  isActive,
+}) {
+  const navigate = useNavigate();
+
   let buttonClass;
   let buttonText;
-  if (!forSaved) {
-    buttonClass = `card-list__item__button ${isSaved ? 'card-list__item__button_type_active' : ''}`;
-    buttonText = isSaved ? '✓' : 'Сохранить';
+
+  if (isActive) {
+    buttonClass = `card-list__item__button card-list__item__button_type_active`;
+    buttonText = '✓';
+  } else if (!forSaved) {
+    buttonClass = 'card-list__item__button';
+    buttonText = 'Сохранить';
   } else {
     buttonClass = 'card-list__item__button card-list__item__button_type_delete';
     buttonText = (
@@ -22,16 +47,44 @@ function MoviesCard({ name, duration, imageSrc, forSaved }) {
     );
   }
   function saveCard() {
-    setIsSaved(!isSaved);
+    onSave({
+      nameRU,
+      nameEN,
+      country,
+      director,
+      year,
+      description,
+      trailerLink,
+      thumbnail,
+      movieId,
+      duration,
+      image,
+    });
   }
+
+  function deleteCard() {
+    onDelete(id);
+  }
+
+  function convertMinute(n) {
+    return `${n} ${getDeclOfNum(n, ['минута', 'минуты', 'минут'])}`;
+  }
+
   return (
     <div className="card-list__item">
       <div className="card-list__item__info">
         <p className="card-list__item__name">{name}</p>
-        <p className="card-list__item__duration">{duration}</p>
+        <p className="card-list__item__duration">{convertMinute(duration)}</p>
       </div>
-      <img src={imageSrc} alt="изображение фильма" className="card-list__item__image" />
-      <button type="button" className={buttonClass} onClick={saveCard}>
+      <a href={trailerLink} rel="noreferrer noopener" target="_blank">
+        <img src={image} alt="изображение фильма" className="card-list__item__image" />
+      </a>
+      <button
+        type="button"
+        className={buttonClass}
+        disabled={isActive}
+        onClick={forSaved ? deleteCard : saveCard}
+      >
         {buttonText}
       </button>
     </div>

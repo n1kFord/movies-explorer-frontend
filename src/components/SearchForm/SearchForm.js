@@ -3,9 +3,8 @@ import './SearchForm.css';
 import searchFormLogoPath from '../../images/search__form__logo.svg';
 import Switch from '../Switch/Switch';
 
-function SearchForm() {
-  const [searchInfo, setSearchInfo] = React.useState({ movie: '' });
-  const [isSwitchActive, setIsSwitchActive] = React.useState(true);
+function SearchForm({ onSubmit }) {
+  const [searchInfo, setSearchInfo] = React.useState({ movie: '', isActive: true });
 
   function handleChange(e) {
     setSearchInfo({
@@ -15,13 +14,12 @@ function SearchForm() {
   }
 
   function handleToggle() {
-    setIsSwitchActive(!isSwitchActive);
+    setSearchInfo({ ...searchInfo, isActive: !searchInfo.isActive });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(searchInfo, isSwitchActive);
-    setSearchInfo({ ...searchInfo, movie: '' });
+    onSubmit(searchInfo);
   }
 
   return (
@@ -37,12 +35,11 @@ function SearchForm() {
               className="search__form__input"
               placeholder="Фильм"
               onChange={handleChange}
-              required
             />
             <button type="submit" className="search__form__button" />
           </div>
           <div className="search__form__short-films">
-            <Switch isActive={isSwitchActive} handleToggle={handleToggle} />
+            <Switch isActive={searchInfo.isActive} handleToggle={handleToggle} />
             <p className="search__form__text">Короткометражки</p>
           </div>
         </fieldset>

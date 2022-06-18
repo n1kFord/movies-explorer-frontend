@@ -20,6 +20,12 @@
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.13);
 }
 
+@media screen and (max-width: 760px) {
+  .search__form:hover {
+    box-shadow: none;
+  }
+}
+
 .search__form-set {
   margin: auto 30px auto 19px;
   padding: 0;
