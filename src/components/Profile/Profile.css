@@ -109,13 +109,20 @@
   }
 }
 
-.profile__request-error {
+.profile__request {
   margin: 30px auto 0;
   padding: 0;
   font-size: 12px;
   font-weight: 400;
   line-height: 13px;
+}
+
+.profile__request_type_error {
   color: #e82c5f;
+}
+
+.profile__request_type_success {
+  color: #01a101;
 }
 
 @media screen and (max-width: 600px) {

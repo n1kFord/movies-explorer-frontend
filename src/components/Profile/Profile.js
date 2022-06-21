@@ -3,7 +3,16 @@ import './Profile.css';
 import { validateName, validateEmail } from '../../utils/validation/index';
 import PreLoader from '../PreLoader/PreLoader';
 
-function Profile({ name, email, isLoading, onInfoUpdate, onUserLeave, errorMessage, onClear }) {
+function Profile({
+  name,
+  email,
+  isLoading,
+  onInfoUpdate,
+  onUserLeave,
+  errorMessage,
+  successMessage,
+  onClear,
+}) {
   const [dataForChange, setDataForChange] = React.useState({ name, email });
   const [validationError, setValidationError] = React.useState('');
   const [isChanged, setIsChanged] = React.useState(false);
@@ -43,6 +52,7 @@ function Profile({ name, email, isLoading, onInfoUpdate, onUserLeave, errorMessa
       ...dataForChange,
       [e.target.name]: e.target.value,
     });
+    onClear();
   }
 
   function onEditSave(e) {
@@ -77,7 +87,8 @@ function Profile({ name, email, isLoading, onInfoUpdate, onUserLeave, errorMessa
         </div>
       </div>
       <span className="profile__validation-error">{validationError}</span>
-      <span className="profile__request-error">{errorMessage}</span>
+      <span className="profile__request profile__request_type_error">{errorMessage}</span>
+      <span className="profile__request profile__request_type_success">{successMessage}</span>
       <PreLoader isLoading={isLoading} />
       <div className="profile__actions">
         <button

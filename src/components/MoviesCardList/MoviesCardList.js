@@ -17,6 +17,8 @@ function MoviesCardList({
   const [isFound, setIsFound] = React.useState(true);
   const [listLength, setListLength] = React.useState(12);
 
+  let renderedMoviesLength = 0;
+
   const notFoundHintClassName = `card-list__not-found ${
     isFound ? '' : 'card-list__not-found_type_active'
   }`;
@@ -85,6 +87,7 @@ function MoviesCardList({
 
   React.useEffect(() => {
     updateList();
+    renderedMoviesLength = 0;
     window.addEventListener('resize', updateList);
     return () => {
       window.removeEventListener('resize', updateList);
@@ -113,6 +116,7 @@ function MoviesCardList({
       <div className="card-list__container">
         <div className="error-popup"></div>
         {Cards.map((card, i) => {
+          renderedMoviesLength += 1;
           let uniqueId = uuidv4();
           if (!searchData.movie) {
             if (i < listLength) {
@@ -124,7 +128,7 @@ function MoviesCardList({
         })}
       </div>
       <ErrorPopup isOpen={isErrorPopupOpened} onClose={onPopupClose} forSaved={forSaved} />
-      {Cards.length >= 12 && (
+      {renderedMoviesLength - (window.innerWidth > 768 ? 3 : 2) >= listLength && (
         <button type="button" className="card-list__button" onClick={addMoreFilms}>
           Ещё
         </button>

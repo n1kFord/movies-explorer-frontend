@@ -147,11 +147,6 @@
   background: #ee3465;
   border-radius: 30px;
   color: white;
-  cursor: default;
-}
-
-.card-list__item__button_type_active:hover {
-  opacity: 1;
 }
 
 .card-list__item__button_type_delete {

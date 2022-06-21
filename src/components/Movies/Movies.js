@@ -16,8 +16,13 @@ function Movies({
   const [searchData, setSearchData] = React.useState({ movie: '', isActive: true });
 
   function onSearchSubmit(data) {
+    localStorage.setItem('ltsh', JSON.stringify(data));
     if (movies.length !== 0) {
       setSearchData(data);
+    } else {
+      setTimeout(() => {
+        setSearchData(data);
+      }, 1000);
     }
   }
 
@@ -30,6 +35,7 @@ function Movies({
           forSaved={false}
           Cards={movies}
           onCardSave={onCardSave}
+          onCardDelete={onCardDelete}
           savedCards={savedMovies}
           isErrorPopupOpened={isErrorPopupOpened}
           onPopupClose={onPopupClose}

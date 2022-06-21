@@ -18,7 +18,9 @@ function Header({ isLoggedIn }) {
 
   return (
     <header className="header">
-      <img src={headerLogoPath} alt="логотип шапки" className="header__logo" />
+      <Link to="/">
+        <img src={headerLogoPath} alt="логотип шапки" className="header__logo" />
+      </Link>
       <div className="header__auth">
         {isLoggedIn ? (
           <>

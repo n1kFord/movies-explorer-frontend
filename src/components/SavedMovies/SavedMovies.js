@@ -8,6 +8,7 @@ function SavedMovies({ movies, onCardDelete, isLoading, isErrorPopupOpened, onPo
   const [searchData, setSearchData] = React.useState({ movie: '', isActive: true });
 
   function onSearchSubmit(data) {
+    localStorage.setItem('ltsh', JSON.stringify(data));
     if (movies.length !== 0) {
       setSearchData(data);
     }

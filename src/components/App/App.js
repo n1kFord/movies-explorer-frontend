@@ -29,10 +29,11 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
 
-  /* api errors_____*/
+  /* api errors | messages _____*/
   const [registerErrorMessage, setRegisterErrorMessage] = React.useState('');
   const [loginErrorMessage, setLoginErrorMessage] = React.useState('');
   const [profileErrorMessage, setProfileErrorMessage] = React.useState('');
+  const [profileSuccessMessage, setProfileSuccessMessage] = React.useState('');
   /*__________________*/
 
   const [isLoading, setIsLoading] = React.useState(false); // основной стейт лоадера
@@ -92,27 +93,31 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    setIsSavedMoviesLoading(true);
-    let token = localStorage.getItem('jwt');
-    mainApi.getSavedMovies(token)
-      .then((savedMoviesList) => {
-        let userSavedMovies = savedMoviesList.data.filter(
-          (movie) => movie.owner === currentUser.id
-        );
-        setSavedMovies(userSavedMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsSavedMoviesLoading(false);
-      });
+    if (localStorage.getItem('jwt')) {
+      setIsSavedMoviesLoading(true);
+      let token = localStorage.getItem('jwt');
+      mainApi
+        .getSavedMovies(token)
+        .then((savedMoviesList) => {
+          let userSavedMovies = savedMoviesList.data.filter(
+            (movie) => movie.owner === currentUser.id
+          );
+          setSavedMovies(userSavedMovies);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsSavedMoviesLoading(false);
+        });
+    }
   }, [currentUser.id]); // подгрузка сохраненных фильмов кокретного юзера
 
-  function clearRequestErrors() {
+  function clearRequestMessages() {
     setRegisterErrorMessage('');
     setLoginErrorMessage('');
     setProfileErrorMessage('');
+    setProfileSuccessMessage('');
   }
 
   function handleAuthRegister(info) {
@@ -121,7 +126,7 @@ function App() {
       .register(info.name, info.email, info.password)
       .then((res) => {
         if (res.email) {
-          navigate('/signin');
+          handleAuthLogin({ email: res.email, password: info.password });
         } else {
           setRegisterErrorMessage(res.message);
         }
@@ -140,7 +145,7 @@ function App() {
     auth
       .authorize(info.email, info.password)
       .then((res) => {
-        if (!res.message && localStorage.getItem('jwt')) {
+        if (!res.message) {
           let token = localStorage.getItem('jwt');
           auth
             .checkToken(token)
@@ -180,6 +185,7 @@ function App() {
           email: res.data.email,
         });
         setProfileErrorMessage('');
+        setProfileSuccessMessage('Информация успешно сохранена!');
       })
       .catch((err) => {
         console.log(err);
@@ -193,6 +199,7 @@ function App() {
   function onUserLeave() {
     setLoggedIn(false);
     localStorage.clear('jwt');
+    navigate('/');
   }
 
   function handleCardSave(card) {
@@ -215,10 +222,18 @@ function App() {
   function handleCardDelete(id) {
     setIsSavedMoviesLoading(true);
     let token = localStorage.getItem('jwt');
+    let normalId = id;
+    if (id.toString().length < 10) {
+      savedMovies.forEach((movie) => {
+        if (movie.movieId === id) {
+          normalId = movie._id;
+        }
+      });
+    }
     mainApi
-      .deleteMovie(id, token)
+      .deleteMovie(normalId, token)
       .then(() => {
-        setSavedMovies((state) => state.filter((c) => c._id !== id));
+        setSavedMovies((state) => state.filter((c) => c._id !== normalId));
       })
       .catch((err) => {
         setIsErrorPopupOpened(true);
@@ -266,6 +281,7 @@ function App() {
                       movies={movies}
                       savedMovies={savedMovies}
                       onCardSave={handleCardSave}
+                      onCardDelete={handleCardDelete}
                       isLoading={isMoviesLoading}
                       isErrorPopupOpened={isErrorPopupOpened}
                       onPopupClose={closeErrorPopup}
@@ -314,7 +330,8 @@ function App() {
                       onInfoUpdate={handleUpdateUserInfo}
                       onUserLeave={onUserLeave}
                       errorMessage={profileErrorMessage}
-                      onClear={clearRequestErrors}
+                      successMessage={profileSuccessMessage}
+                      onClear={clearRequestMessages}
                     />
                   </>
                 }
@@ -330,7 +347,7 @@ function App() {
                   <Login
                     onAuthLogin={handleAuthLogin}
                     errorMessage={loginErrorMessage}
-                    onClear={clearRequestErrors}
+                    onClear={clearRequestMessages}
                     isLoading={isLoading}
                   />
                 }
@@ -346,7 +363,7 @@ function App() {
                   <Register
                     onAuthRegister={handleAuthRegister}
                     errorMessage={registerErrorMessage}
-                    onClear={clearRequestErrors}
+                    onClear={clearRequestMessages}
                     isLoading={isLoading}
                   />
                 }

@@ -22,6 +22,14 @@ function SearchForm({ onSubmit }) {
     onSubmit(searchInfo);
   }
 
+  React.useEffect(() => {
+    if (localStorage.getItem('ltsh')) {
+      let tmp = JSON.parse(localStorage.getItem('ltsh'));
+      setSearchInfo({ ...searchInfo, movie: tmp.movie, isActive: tmp.isActive });
+      return onSubmit(tmp);
+    }
+  }, []);
+
   return (
     <section className="search">
       <form className="search__form" onSubmit={handleSubmit}>

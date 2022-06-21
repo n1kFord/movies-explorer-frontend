@@ -1,6 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { getDeclOfNum } from '../../utils/numberDeclension';
 
 function MoviesCard({
@@ -22,10 +22,10 @@ function MoviesCard({
   onDelete,
   isActive,
 }) {
-  const navigate = useNavigate();
-
   let buttonClass;
   let buttonText;
+
+  let onButtonClick = !forSaved ? (isActive ? deleteCard : saveCard) : deleteCard;
 
   if (isActive) {
     buttonClass = `card-list__item__button card-list__item__button_type_active`;
@@ -63,7 +63,7 @@ function MoviesCard({
   }
 
   function deleteCard() {
-    onDelete(id);
+    onDelete(id ? id : movieId);
   }
 
   function convertMinute(n) {
@@ -79,12 +79,7 @@ function MoviesCard({
       <a href={trailerLink} rel="noreferrer noopener" target="_blank">
         <img src={image} alt="изображение фильма" className="card-list__item__image" />
       </a>
-      <button
-        type="button"
-        className={buttonClass}
-        disabled={isActive}
-        onClick={forSaved ? deleteCard : saveCard}
-      >
+      <button type="button" className={buttonClass} onClick={onButtonClick}>
         {buttonText}
       </button>
     </div>

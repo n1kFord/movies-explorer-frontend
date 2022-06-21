@@ -59,7 +59,9 @@ function Register(props) {
 
   return (
     <div className="auth">
-      <img src={authLogoPath} alt="логотип" className="auth__logo" />
+      <Link to="/" className="auth__logo">
+        <img src={authLogoPath} alt="логотип" className="auth__logo__image" />
+      </Link>
       <h2 className="auth__welcome">Добро пожаловать!</h2>
       <form className="auth__form" onSubmit={handleSubmit}>
         <fieldset className="auth__form-set">
