@@ -128,7 +128,7 @@ function MoviesCardList({
         })}
       </div>
       <ErrorPopup isOpen={isErrorPopupOpened} onClose={onPopupClose} forSaved={forSaved} />
-      {renderedMoviesLength - (window.innerWidth > 768 ? 3 : 2) >= listLength && (
+      {!searchData.movie && (renderedMoviesLength - (window.innerWidth > 768 ? 3 : 2) >= listLength) && (
         <button type="button" className="card-list__button" onClick={addMoreFilms}>
           Ещё
         </button>
