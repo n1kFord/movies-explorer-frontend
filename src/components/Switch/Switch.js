@@ -2,11 +2,7 @@ import React from 'react';
 import './Switch.css';
 
 const Switch = ({ isActive, handleToggle }) => {
-  const labelClass = `switch__label ${isActive ? 'switch__label_type_active' : ''}`;
-
-  function checkState() {
-    return isActive;
-  }
+  let labelClass = `switch__label ${isActive ? 'switch__label_type_active' : ''}`;
 
   return (
     <div className="switch">
@@ -14,7 +10,7 @@ const Switch = ({ isActive, handleToggle }) => {
         className="switch__checkbox"
         onChange={handleToggle}
         id={`switch-new`}
-        defaultChecked={checkState()}
+        defaultChecked={isActive}
         type="checkbox"
       />
       <label className={labelClass} htmlFor={`switch-new`}>

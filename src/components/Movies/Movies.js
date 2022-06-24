@@ -16,7 +16,7 @@ function Movies({
   const [searchData, setSearchData] = React.useState({ movie: '', isActive: true });
 
   function onSearchSubmit(data) {
-    localStorage.setItem('ltsh', JSON.stringify(data));
+    localStorage.setItem('ltsh-n', JSON.stringify(data));
     if (movies.length !== 0) {
       setSearchData(data);
     } else {
@@ -29,7 +29,7 @@ function Movies({
   return (
     <section className="movies">
       <div className="section__wrapper section__wrapper_type_movies">
-        <SearchForm onSubmit={onSearchSubmit} />
+        <SearchForm onSubmit={onSearchSubmit} forSaved={false} />
         <PreLoader isLoading={isLoading} />
         <MoviesCardList
           forSaved={false}

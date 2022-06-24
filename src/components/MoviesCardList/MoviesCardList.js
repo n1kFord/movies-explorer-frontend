@@ -18,6 +18,7 @@ function MoviesCardList({
   const [listLength, setListLength] = React.useState(12);
 
   let renderedMoviesLength = 0;
+  let counter = 0;
 
   const notFoundHintClassName = `card-list__not-found ${
     isFound ? '' : 'card-list__not-found_type_active'
@@ -118,17 +119,14 @@ function MoviesCardList({
         {Cards.map((card, i) => {
           renderedMoviesLength += 1;
           let uniqueId = uuidv4();
-          if (!searchData.movie) {
-            if (i < listLength) {
-              return createCard(card, uniqueId);
-            }
-          } else if (isCardFound(card.nameRU, card.nameEN, card.duration)) {
+          if (counter < listLength && isCardFound(card.nameRU, card.nameEN, card.duration)) {
+            counter += 1;
             return createCard(card, uniqueId);
           }
         })}
       </div>
       <ErrorPopup isOpen={isErrorPopupOpened} onClose={onPopupClose} forSaved={forSaved} />
-      {!searchData.movie && (renderedMoviesLength - (window.innerWidth > 768 ? 3 : 2) >= listLength) && (
+      {renderedMoviesLength - (window.innerWidth > 768 ? 3 : 2) >= listLength && (
         <button type="button" className="card-list__button" onClick={addMoreFilms}>
           Ещё
         </button>

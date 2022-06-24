@@ -3,7 +3,7 @@ import './SearchForm.css';
 import searchFormLogoPath from '../../images/search__form__logo.svg';
 import Switch from '../Switch/Switch';
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, forSaved }) {
   const [searchInfo, setSearchInfo] = React.useState({ movie: '', isActive: true });
 
   function handleChange(e) {
@@ -23,8 +23,12 @@ function SearchForm({ onSubmit }) {
   }
 
   React.useEffect(() => {
-    if (localStorage.getItem('ltsh')) {
-      let tmp = JSON.parse(localStorage.getItem('ltsh'));
+    if (!forSaved && localStorage.getItem('ltsh-n')) {
+      let tmp = JSON.parse(localStorage.getItem('ltsh-n'));
+      setSearchInfo({ ...searchInfo, movie: tmp.movie, isActive: tmp.isActive });
+      return onSubmit(tmp);
+    } else if (forSaved && localStorage.getItem('ltsh-s')) {
+      let tmp = JSON.parse(localStorage.getItem('ltsh-s'));
       setSearchInfo({ ...searchInfo, movie: tmp.movie, isActive: tmp.isActive });
       return onSubmit(tmp);
     }
