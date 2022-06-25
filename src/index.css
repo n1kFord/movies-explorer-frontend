@@ -1,0 +1,44 @@
+/* normalize || fonts */
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts.css');
+/*________________________________*/
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* общие классы, margin при необходимости меняется в _type_ */
+.section__wrapper {
+  margin: 110px auto 0;
+  padding: 0;
+  width: 89%;
+}
+
+@media screen and (max-width: 768px) {
+  .section__wrapper {
+    width: 87%;
+  }
+}
+
+.section__title {
+  margin: 0;
+  padding: 0 0 23px 0;
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 580px) {
+  .section__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+/*____________________*/

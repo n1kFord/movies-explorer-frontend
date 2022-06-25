@@ -1,0 +1,135 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  opacity: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: 0.2s linear;
+}
+
+.sidebar_opened {
+  z-index: 2;
+  opacity: 1;
+  right: 0;
+}
+
+.sidebar__overlay {
+  width: 32%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__overlay {
+    display: none;
+  }
+}
+
+.sidebar__container {
+  height: 100%;
+  width: 68%;
+  position: relative;
+  max-width: 520px;
+  background-color: white;
+  display: none;
+  z-index: 2;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__container {
+    width: 100%;
+  }
+}
+
+.sidebar__container_opened {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar__container__close-icon {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__container__close-icon {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+.sidebar__main-links {
+  margin: 159px auto 0;
+  padding: 0;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__main-links {
+    margin-top: 144px;
+  }
+}
+
+.sidebar__link {
+  margin: 28px auto 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-decoration: none;
+  color: black;
+  transition: 0.1s linear;
+}
+
+.sidebar__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__link {
+    margin-top: 24px;
+  }
+}
+
+.sidebar__link_type_active {
+  padding-bottom: 4px;
+  border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__link_type_active {
+    padding-bottom: 7px;
+  }
+}
+
+.sidebar__link:first-child {
+  margin-top: 0;
+}
+
+.sidebar__link_type_account {
+  margin: 0 0 98px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  background: #f9f9f9;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 360px) {
+  .sidebar__link_type_account {
+    margin-bottom: 54px;
+  }
+}

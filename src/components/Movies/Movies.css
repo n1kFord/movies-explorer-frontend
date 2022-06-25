@@ -1,0 +1,24 @@
+.movies {
+  width: 100%;
+  max-width: 1280px;
+  margin: 88px auto 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .movies {
+    margin-top: 98px;
+  }
+}
+
+.section__wrapper_type_movies {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .section__wrapper_type_movies {
+    width: 92.1%;
+  }
+}

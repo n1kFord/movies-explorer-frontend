@@ -1,0 +1,20 @@
+.preloader {
+  opacity: 0;
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 40px auto 0;
+  padding: 0;
+}
+
+.preloader_active {
+  opacity: 1;
+  transition: all 0.5s ease;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+}
